@@ -905,7 +905,7 @@ main (int argc, char *argv[])
         band_mask[index] = mask_value;
 
         /* Let the user know where we are in the processing */
-        if (index%99999 == 0)
+        if (verbose_flag && (index%99999 == 0))
         {
             printf ("\r");
             printf ("Processed data element %d", index);
@@ -913,9 +913,11 @@ main (int argc, char *argv[])
     }
 
     /* Status output cleanup to match the final output size */
-    printf ("\r");
-    printf ("Processed data element %d", index);
-    printf ("\n");
+    if (verbose_flag) {
+            printf ("\r");
+            printf ("Processed data element %d", index);
+            printf ("\n");
+    }
 
     /* Add the DSWE bands to the metadata file and generate the ENVI images
        and header files */

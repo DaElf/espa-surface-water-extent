@@ -337,13 +337,14 @@ main (int argc, char *argv[])
         }
 
         /* Let the user know where we are in the processing */
-        if (pixel_index%99999 == 0)
+        if (verbose_flag && (pixel_index%99999 == 0))
         {
             printf("\rProcessed data element %d", pixel_index);
         }
     }
     /* Status output cleanup to match the final output size */
-    printf("\rProcessed data element %d\n", pixel_index);
+    if (verbose_flag)
+	    printf("\rProcessed data element %d\n", pixel_index);
 
     float percent_clear = 100.0 * (float)total_clear_pixels
                                   / (float)total_image_pixels;
